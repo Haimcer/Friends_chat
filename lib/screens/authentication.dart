@@ -100,16 +100,19 @@ class AutenticacaoPage extends StatelessWidget {
                               }
                             }
                           },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Obx(() => Text(
-                                    controller.botaoPrincipal.value,
-                                    style: TextStyle(fontSize: 20))),
-                              )
-                            ],
+                          child: Container(
+                            width: 120,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Obx(() => Text(
+                                      controller.botaoPrincipal.value,
+                                      style: TextStyle(fontSize: 20))),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -133,6 +136,53 @@ class AutenticacaoPage extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Container(
+                        width: 100,
+                        padding: EdgeInsets.all(0),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context).primaryColorLight,
+                              spreadRadius: 1,
+                              blurRadius: 1,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          decoration: BoxDecoration(border: Border.all()),
+                          width: 270,
+                          height: 50,
+                          padding: EdgeInsets.fromLTRB(18, 18, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Container(
+                                  //decoration: BoxDecoration(color: Colors.blue),
+                                  child: Image.network(
+                                      'http://pngimg.com/uploads/google/google_PNG19635.png',
+                                      fit: BoxFit.cover)),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Text(
+                                'Continuar com Google',
+                                style: TextStyle(
+                                  fontFamily: 'roboto',
+                                  fontSize: 14,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
