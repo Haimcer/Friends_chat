@@ -13,19 +13,21 @@ class ThemeProvider extends ChangeNotifier {
 
 class Mythemes {
   static final darkTheme = ThemeData(
+      buttonColor: Color(0xfff4285F4),
       scaffoldBackgroundColor: Colors.grey.shade900,
-      primaryColorLight: Color(0xfff1694a),
-      colorScheme: ColorScheme.dark(),
+      primaryColorLight: const Color(0xfff1694a),
+      colorScheme: const ColorScheme.dark(),
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.grey.shade900,
-          titleTextStyle: TextStyle(color: Colors.white)),
-      toggleButtonsTheme: ToggleButtonsThemeData(color: Colors.purple));
+          titleTextStyle: const TextStyle(color: Colors.white)),
+      toggleButtonsTheme: const ToggleButtonsThemeData(color: Colors.purple));
 
   static final lightTheme = ThemeData(
+      buttonColor: Color(0xfffffffff),
       scaffoldBackgroundColor: Colors.white,
-      primaryColorLight: Color(0xfff1694a),
-      colorScheme: ColorScheme.light(),
-      appBarTheme: AppBarTheme(
+      primaryColorLight: const Color(0xfff1694a),
+      colorScheme: const ColorScheme.light(),
+      appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           titleTextStyle: TextStyle(color: Colors.white)));
 }
