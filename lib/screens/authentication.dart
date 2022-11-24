@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:friends_chat/provider/google_sign_in_client.dart';
 import 'package:get/get.dart';
 import 'package:friends_chat/controllers/authentication_controller.dart';
-
-import '../widgets/change_theme_button.dart';
+import 'package:provider/provider.dart';
+import 'package:friends_chat/models/themes.dart';
 
 class AutenticacaoPage extends StatelessWidget {
   final controller = Get.put(AutenticacaoController());
+  final controllerTheme = Get.put(Changetheme());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: controllerTheme.ThemeBar.value,
       appBar: AppBar(
+        backgroundColor: controllerTheme.ThemeBar.value,
         toolbarHeight: 30,
         elevation: 0,
         actions: [
-          ChangeThemeButtonWidget(),
+          IconButton(
+            onPressed: () {},
+            icon: controllerTheme.Icon,
+            color: controllerTheme.ThemeBottom.value,
+          )
         ],
       ),
       body: Container(
@@ -40,7 +48,7 @@ class AutenticacaoPage extends StatelessWidget {
                           child: Obx(() => Text(
                                 controller.titulo.value,
                                 style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
+                                    color: controllerTheme.ThemeBottom.value,
                                     fontSize: 25,
                                     fontStyle: FontStyle.italic,
                                     fontWeight: FontWeight.w900),
@@ -51,11 +59,11 @@ class AutenticacaoPage extends StatelessWidget {
                               bottom: 10, left: 30, right: 30, top: 5),
                           child: TextFormField(
                             controller: controller.email,
-                            cursorColor: Theme.of(context).primaryColorLight,
+                            cursorColor: controllerTheme.ThemeBottom.value,
                             decoration: InputDecoration(
                               labelText: 'Email',
                               labelStyle: TextStyle(
-                                  color: Theme.of(context).primaryColorLight),
+                                  color: controllerTheme.ThemeBottom.value),
                             ),
                             keyboardType: TextInputType.emailAddress,
                             validator: (value) {
@@ -72,11 +80,11 @@ class AutenticacaoPage extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.senha,
                             obscureText: true,
-                            cursorColor: Theme.of(context).primaryColorLight,
+                            cursorColor: controllerTheme.ThemeBottom.value,
                             decoration: InputDecoration(
                               labelText: 'Senha',
                               labelStyle: TextStyle(
-                                  color: Theme.of(context).primaryColorLight),
+                                  color: controllerTheme.ThemeBottom.value),
                             ),
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -94,7 +102,7 @@ class AutenticacaoPage extends StatelessWidget {
                             style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        Theme.of(context).primaryColorLight)),
+                                        controllerTheme.ThemeBottom.value)),
                             onPressed: () {
                               if (controller.formKey.currentState!.validate()) {
                                 if (controller.isLogin.value) {
@@ -137,7 +145,7 @@ class AutenticacaoPage extends StatelessWidget {
                               style: ButtonStyle(
                                 foregroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        Theme.of(context).primaryColorLight),
+                                        controllerTheme.ThemeBottom.value),
                               ),
                             ),
                           ],
@@ -148,7 +156,7 @@ class AutenticacaoPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
-                                color: Theme.of(context).primaryColorLight,
+                                color: controllerTheme.ThemeBottom.value,
                                 spreadRadius: 1,
                                 blurRadius: 1,
                                 offset:
@@ -164,7 +172,12 @@ class AutenticacaoPage extends StatelessWidget {
                           fit: StackFit.passthrough,
                           children: <Widget>[
                             GestureDetector(
-                              onDoubleTap: () {},
+                              onDoubleTap: () {
+                                final provider =
+                                    Provider.of<GoogleSingnInProvider>(context,
+                                        listen: false);
+                                provider.googleLogin();
+                              },
                               child: Container(
                                 height: 50,
                                 width: 230,
@@ -175,7 +188,7 @@ class AutenticacaoPage extends StatelessWidget {
                                         blurRadius: 2.0,
                                         offset: Offset(0.0, 0.75))
                                   ],
-                                  color: Theme.of(context).buttonColor,
+                                  color: controllerTheme.ThemeBottom.value,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(5),
                                     topRight: Radius.circular(5),
@@ -203,50 +216,8 @@ class AutenticacaoPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            /*TextButton.icon(
-                              onPressed: () {},
-                              icon: Image.asset('assets/images/google.png'),
-                              label: Text(
-                                'Continuar com Google',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: Colors.grey[900],
-                                  fontSize: 16,
-                                ),
-                              ),
-                            )*/
                           ],
                         ),
-                        /*SizedBox(
-                          width: 270,
-                          height: 50,
-                          child: ElevatedButton(
-                            style: ButtonStyle(),
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                    height: 54,
-                                    width: 54,
-                                    child: Image.asset(
-                                      'assets/images/google.png',
-                                      fit: BoxFit.cover,
-                                    )),
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                                Text(
-                                  'Continuar com Google',
-                                  style: TextStyle(
-                                    fontFamily: 'roboto',
-                                    fontSize: 14,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )*/
                       ],
                     ),
                   ),

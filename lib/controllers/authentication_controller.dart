@@ -18,7 +18,7 @@ class AutenticacaoController extends GetxController {
   onInit() {
     super.onInit();
     ever(isLogin, (visible) {
-      titulo.value = visible ? 'Bem vindo' : 'Crie sua conta';
+      titulo.value = visible ? 'Bem vindo!' : 'Crie sua conta';
       botaoPrincipal.value = visible ? 'Entrar' : 'Registre-se';
       appBarButton.value = visible ? 'Cadastre-se' : 'Faça login';
       AppBarDescription.value =
