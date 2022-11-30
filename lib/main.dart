@@ -6,6 +6,7 @@ import 'package:friends_chat/provider/google_sign_in_client.dart';
 import 'package:friends_chat/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:friends_chat/config.dart';
+import 'package:friends_chat/widgets/change_theme_button.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'widgets/checkauth.dart';
@@ -19,7 +20,8 @@ void main() async {
 }
 
 class MeuAplicativo extends StatelessWidget {
-  var brightness = SchedulerBinding.instance.window.platformBrightness.obs;
+  var brightness =
+      SchedulerBinding.instance.platformDispatcher.platformBrightness.obs;
   /*Future _iniciaTheme() async {
   var brightness = SchedulerBinding.instance.window.platformBrightness;
 

@@ -5,6 +5,8 @@ import 'package:friends_chat/controllers/authentication_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:friends_chat/models/themes.dart';
 
+import '../widgets/change_theme_button.dart';
+
 class AutenticacaoPage extends StatelessWidget {
   final controller = Get.put(AutenticacaoController());
   final controllerTheme = Get.put(Changetheme());
@@ -19,7 +21,9 @@ class AutenticacaoPage extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              controllerTheme.toogleRegistrar();
+            },
             icon: controllerTheme.Icon,
             color: controllerTheme.ThemeBottom.value,
           )

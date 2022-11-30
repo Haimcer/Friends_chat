@@ -4,10 +4,9 @@ import 'package:friends_chat/screens/authentication.dart';
 import 'package:get/get.dart';
 
 final controller = Get.put(MeuAplicativo());
-
-var isOn = controller.brightness.value == Brightness.dark
-    ? Themedark()
-    : Themelight().obs;
+var isDark = false.obs;
+var isOn =
+    controller.brightness.value == Brightness.dark ? true : isDark.value.obs;
 
 class Themelight extends GetxController {
   var ThemeBarlight = Colors.white.obs;
@@ -27,22 +26,23 @@ class Themedark extends GetxController {
   var Icondark = Icon(Icons.brightness_7_outlined);
 }
 
-class Changetheme {
-  var ThemeBar = isOn == Themelight()
-      ? Themelight().ThemeBarlight
-      : Themedark().ThemeBardark;
-  var ThemeBottom = isOn == Themelight()
+class Changetheme extends GetxController {
+  var ThemeBar =
+      isOn == false ? Themelight().ThemeBarlight : Themedark().ThemeBardark;
+  var ThemeBottom = isOn == false
       ? Themelight().ThemeBottomlight
       : Themedark().ThemeBottomdark;
-  var ThemeIcons = isOn == Themelight()
-      ? Themelight().ThemeIconslight
-      : Themedark().ThemeIconsdark;
-  var Themeprimarycolor = isOn == Themelight()
+  var ThemeIcons =
+      isOn == false ? Themelight().ThemeIconslight : Themedark().ThemeIconsdark;
+  var Themeprimarycolor = isOn == false
       ? Themelight().Themeprimarycolorlight
       : Themedark().Themeprimarycolordark;
-  var Themrsecundarycolor = isOn == Themelight()
+  var Themrsecundarycolor = isOn == false
       ? Themelight().Themrsecundarycolorlight
       : Themedark().Themrsecundarycolordark;
-  var Icon =
-      isOn == Themelight() ? Themelight().Iconlight : Themedark().Icondark;
+  var Icon = isOn == false ? Themelight().Iconlight : Themedark().Icondark;
+
+  toogleRegistrar() {
+    isDark.value = true;
+  }
 }
